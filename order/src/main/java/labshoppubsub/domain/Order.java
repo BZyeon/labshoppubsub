@@ -1,5 +1,6 @@
 package labshoppubsub.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import lombok.Data;
 @Entity
 @Table(name = "Order_table")
 @Data
+//<<< DDD / Aggregate Root
 public class Order {
 
     @Id
@@ -31,13 +33,7 @@ public class Order {
     }
 
     @PrePersist
-    public void onPrePersist() {
-        // Get request from Inventory
-        //labshoppubsub.external.Inventory inventory =
-        //    Application.applicationContext.getBean(labshoppubsub.external.InventoryService.class)
-        //    .getInventory(/** mapping value needed */);
-
-    }
+    public void onPrePersist() {}
 
     public static OrderRepository repository() {
         OrderRepository orderRepository = OrderApplication.applicationContext.getBean(
@@ -46,3 +42,4 @@ public class Order {
         return orderRepository;
     }
 }
+//>>> DDD / Aggregate Root
